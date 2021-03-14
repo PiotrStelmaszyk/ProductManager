@@ -17,6 +17,7 @@ public class Shop {
         Product p6 = pm.createProduct(106, "Chocolate", BigDecimal.valueOf(2.99), Rating.THREE_STAR, LocalDate.now().plusDays(3));
         Product p7 = p2.applyRating(Rating.ONE_STAR);
 
+        System.out.println("********   Welcome to the shop!   **********");
         System.out.println(p2);
         System.out.println(p3);
         System.out.println(p5);
