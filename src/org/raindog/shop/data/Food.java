@@ -20,7 +20,7 @@ public final class Food extends Product {
 
     @Override
     public String toString() {
-        return super.toString() + "and it\'s a Food";
+        return super.toString() + "and it's a Food";
     }
 
     @Override

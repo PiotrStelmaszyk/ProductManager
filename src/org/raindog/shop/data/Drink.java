@@ -22,6 +22,6 @@ public final class Drink extends Product{
 
     @Override
     public String toString() {
-        return super.toString() + " and it\'s a Drink";
+        return super.toString() + " and it's a Drink";
     }
 }
