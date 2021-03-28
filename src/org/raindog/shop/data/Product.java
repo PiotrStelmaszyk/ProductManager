@@ -61,7 +61,7 @@ public abstract class Product implements Rateable<Product> {
                 ", price=" + price +
                 ", discount=" + getDiscount() +
                 ", rating=" + getRating().getStars() +
-                ", best before=" + getBestBefore()+
+                ", best before=" + getBestBefore() +
                 '}';
     }
 
@@ -70,7 +70,7 @@ public abstract class Product implements Rateable<Product> {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         final Product product = (Product) o;
-        return id == product.id && name.equals(product.name);
+        return id == product.id;
     }
 
     @Override

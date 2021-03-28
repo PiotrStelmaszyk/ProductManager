@@ -1,6 +1,6 @@
 package org.raindog.shop.data;
 
-public class Review {
+public class Review implements Comparable <Review>{
     private Rating rating;
     private String comment;
 
@@ -23,5 +23,10 @@ public class Review {
 
     public String getComment() {
         return comment;
+    }
+
+    @Override
+    public int compareTo(Review other) {
+        return other.getRating().ordinal() - this.rating.ordinal();
     }
 }
