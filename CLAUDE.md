@@ -30,7 +30,7 @@ Small learning-exercise domain model for a shop that tracks products and reviews
 - `Product` (abstract), with `final` subclasses `Food` and `Drink`, holds `id`, `name`, `price`, `rating` as `final` fields. There is no setter for rating.
 - `Rateable<T>#applyRating(Rating)` returns a *new* instance with the updated rating (see `Food#applyRating`, `Drink#applyRating`).
 - `ProductManager` stores state in `Map<Product, List<Review>> products`. When a review is added, `reviewProduct` removes the old key, builds a new `Product` via `applyRating`, and re-inserts under the new key with the same review list. Any code that mutates product state must follow this remove-and-reinsert pattern, otherwise the map key goes stale.
-- `Product#equals` uses only `id`, but `Product#hashCode` combines `id` and `name`. This is consistent for the current flow (id/name never change on `applyRating`) but changing either invariant will break `HashMap` lookups — keep `hashCode` and `equals` aligned with what `applyRating` preserves.
+- `Product#equals` and `Product#hashCode` are both keyed on `id` only. If you add a field that should participate in identity, update both together — skewing them will silently break `HashMap` lookups after `applyRating` re-inserts.
 
 ### Construction goes through `ProductManager`, not `new`
 
@@ -39,7 +39,7 @@ Small learning-exercise domain model for a shop that tracks products and reviews
 ### Discount and freshness rules live on the subclass
 
 - `Product#getDiscount` returns `price * DISCOUNT_RATE` (10%, `HALF_UP`, scale 2).
-- `Drink#getDiscount` only applies the parent discount between 17:30 and 18:30 local time; otherwise `BigDecimal.ZERO`.
+- `Drink#getDiscount` only applies the parent discount between 17:30 and 18:30 local time (inclusive on both ends, using `!isBefore`/`!isAfter`); otherwise `BigDecimal.ZERO`.
 - `Food#getDiscount` only applies it when `bestBefore` equals today. Note: `Product#getBestBefore` returns `LocalDate.now()` as a default, so non-`Food` products implicitly report "today" for best-before — reports rely on subclasses to override this.
 - Monetary values are `BigDecimal` throughout. Do not reintroduce `double`/`float` for price or discount arithmetic.
 
