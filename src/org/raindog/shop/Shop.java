@@ -22,7 +22,7 @@ public class Shop {
         pm.reviewProduct(102, Rating.ONE_STAR, "Very bad cup of coffee");
         pm.printProductReport(102);
 
-        pm.createProduct(101, "Tee", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
+        pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(101);
         pm.reviewProduct(101, Rating.FOUR_STAR, "Very nice cup of Tea");
         pm.reviewProduct(101, Rating.FOUR_STAR, "Very nice cup of tea");

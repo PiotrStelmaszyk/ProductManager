@@ -14,7 +14,7 @@ public class ProductManager {
     private ResourceBundle resourceBundle;
     private DateTimeFormatter dateTimeFormatter;
     private NumberFormat moneyFormat;
-    private Map<Product, List<Review>> products = new HashMap();
+    private Map<Product, List<Review>> products = new HashMap<>();
 
 
     public ProductManager(Locale locale) {
@@ -63,14 +63,14 @@ public class ProductManager {
 
     public Product createProduct(int id, String name, BigDecimal price, Rating rating, LocalDate bestBefore) {
         Product product = new Food(id, name, price, rating, bestBefore);
-        products.putIfAbsent(product, new ArrayList<Review>());
+        products.putIfAbsent(product, new ArrayList<>());
 
         return product;
     }
 
     public Product createProduct(int id, String name, BigDecimal price, Rating rating) {
         Product product = new Drink(id, name, price, rating);
-        products.putIfAbsent(product, new ArrayList<Review>());
+        products.putIfAbsent(product, new ArrayList<>());
 
         return product;
     }
