@@ -35,6 +35,10 @@ public class ProductManager {
 
     public void printProductReport(Product product) {
         List<Review> reviews = products.get(product);
+        if (reviews == null) {
+            System.out.println("There is no product: " + product);
+            return;
+        }
         StringBuilder txt = new StringBuilder();
 
         Collections.sort(reviews);
@@ -72,11 +76,20 @@ public class ProductManager {
     }
 
     public Product reviewProduct(int id, Rating rating, String comments) {
-        return reviewProduct(findProduct(id), rating, comments);
+        Product product = findProduct(id);
+        if (product == null) {
+            System.out.println("There is no product with id:" + id);
+            return null;
+        }
+        return reviewProduct(product, rating, comments);
     }
 
     public Product reviewProduct(Product product, Rating rating, String comments) {
         List<Review> reviews = products.get(product);
+        if (reviews == null) {
+            System.out.println("There is no product: " + product);
+            return null;
+        }
         products.remove(product);
         reviews.add(new Review(rating, comments));
 

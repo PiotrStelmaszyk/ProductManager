@@ -75,6 +75,6 @@ public abstract class Product implements Rateable<Product> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id);
     }
 }
