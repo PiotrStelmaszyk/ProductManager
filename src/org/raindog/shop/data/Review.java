@@ -1,8 +1,8 @@
 package org.raindog.shop.data;
 
 public class Review implements Comparable <Review>{
-    private Rating rating;
-    private String comment;
+    private final Rating rating;
+    private final String comment;
 
     public Review(Rating rating, String comment) {
         this.rating = rating;

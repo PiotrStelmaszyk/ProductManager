@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public final class Food extends Product {
 
-    LocalDate bestBefore;
+    private final LocalDate bestBefore;
 
     @Override
     public LocalDate getBestBefore() {
